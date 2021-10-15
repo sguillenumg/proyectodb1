@@ -1,0 +1,7 @@
+secret.py
+/.vscode
+/.vs
+*.pyc
+/.venv
+.idea
+*.log
