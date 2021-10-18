@@ -133,3 +133,24 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+ALLOWED_HOSTS = ['*']
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = False
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'access-control-allow-headers',
+    'access-control-allow-methods',
+    'access-control-allow-origin',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'refer',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
