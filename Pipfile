@@ -13,11 +13,14 @@ superusr = "python manage.py createsuperuser"
 
 [dev-packages]
 pylint-django = "*"
+autopep8 = "*"
+pylint = "*"
 
 [packages]
 django = "==3.0.3"
 djangorestframework = "==3.11.0"
 django-cors-headers = "==3.2.1"
+cx-oracle = "*"
 
 [requires]
 python_version = "3.8"

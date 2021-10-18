@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.entidad',
+    'apps.sucursal',
+    'apps.producto',
+    'apps.venta',
+    'apps.compra',
 ]
 
 MIDDLEWARE = [
@@ -77,6 +82,16 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
+        # 'ENGINE': 'django.db.backends.oracle',
+        # 'NAME': 'localhost:51521/xe',
+        # 'USER': 'c##userdb1',
+        # 'PASSWORD': 'userdb1',
+        # 'TEST': {
+        #     'USER': 'default_test',
+        #     'TBLSPACE': 'default_test_tbls',
+        #     'TBLSPACE_TMP': 'default_test_tbls_tmp',
+        # },
     }
 }
 
