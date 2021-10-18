@@ -1,0 +1,15 @@
+{
+    "apps": [{
+        "name": "db1-srv-dev-8010",
+        "script": "manage.py",
+        "args": ["runserver", "0.0.0.0:8010"],
+        "exec_mode": "fork",
+        "instances": "1",
+        "wait_ready": true,
+        "autorestart": true,
+        "max_restarts": 5,
+        "interpreter" : "./.venv/bin/python3.8"
+    }]
+}
+
+
