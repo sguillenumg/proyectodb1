@@ -21,27 +21,42 @@ class VentaViewSet(viewsets.ModelViewSet):
 
         for det in detalles:
             detalle = DetalleVentaSerializer.json_to_obj(det)
+            detalle.venta_id = venta.id
             detalle.save()
 
             inventario = Inventario.objects.get(sucursal_id=venta.sucursal_id, producto_id=detalle.producto_id)
-            inventario.cantidad = inventario.cantidad - 1
+            inventario.cantidad = inventario.cantidad - detalle.cantidad
             inventario.save()
 
         return Response(proveedor_ser, status=200)
 
     def update(self, request, *args, **kwargs):
 
-        entidad = EntidadSerializer.json_to_obj(request.data['entidad'])
+        detalles = request.data['detalles']
 
-        proveedor = ProveedorSerializer.json_to_obj(request.data)
+        del(request.data['detalles'])
 
-        entidad.save()
-        proveedor.save()
+        venta = VentaSerializer.json_to_obj(request.data)
+        venta.save()
 
-        entidad_ser = EntidadSerializer.obj_to_json(entidad)
-        proveedor_ser = ProveedorSerializer.obj_to_json(proveedor)
+        det_actuales = list(DetalleVenta.objects.filter(venta_id=venta.id))
+        for det in det_actuales:
+            inventario = Inventario.objects.get(
+                sucursal_id=venta.sucursal_id, producto_id=det.producto_id)
+            inventario.cantidad = inventario.cantidad + det.cantidad
+            inventario.save()
 
-        proveedor_ser['entidad'] = entidad_ser
+            det.delete()
+
+        for det in detalles:
+            detalle = DetalleVentaSerializer.json_to_obj(det)
+            detalle.venta_id = venta.id
+            detalle.save()
+
+            inventario = Inventario.objects.get(
+                sucursal_id=venta.sucursal_id, producto_id=detalle.producto_id)
+            inventario.cantidad = inventario.cantidad - detalle.cantidad
+            inventario.save()
 
         return Response(proveedor_ser, status=200)
 
