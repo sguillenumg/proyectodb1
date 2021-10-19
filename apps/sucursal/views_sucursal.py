@@ -19,34 +19,34 @@ class EmpleadoViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         entidad = EntidadSerializer.json_to_obj(request.data['entidad'])
-
-        cliente = EmpleadoSerializer.json_to_obj(request.data)
-
         entidad.save()
-        cliente.save()
+
+        empleado = EmpleadoSerializer.json_to_obj(request.data)
+        empleado.entidad_id = entidad.id
+        empleado.save()
 
         entidad_ser = EntidadSerializer.obj_to_json(entidad)
-        cliente_ser = EmpleadoSerializer.obj_to_json(cliente)
+        empleado_ser = EmpleadoSerializer.obj_to_json(empleado)
 
-        cliente_ser['entidad'] = entidad_ser
+        empleado_ser['entidad'] = entidad_ser
 
-        return Response(cliente_ser, status=200)
+        return Response(empleado_ser, status=200)
 
     def update(self, request, *args, **kwargs):
 
         entidad = EntidadSerializer.json_to_obj(request.data['entidad'])
-
-        proveedor = EmpleadoSerializer.json_to_obj(request.data)
-
         entidad.save()
-        proveedor.save()
+
+        empleado = EmpleadoSerializer.json_to_obj(request.data)
+        empleado.entidad_id = entidad.id
+        empleado.save()
 
         entidad_ser = EntidadSerializer.obj_to_json(entidad)
-        proveedor_ser = EmpleadoSerializer.obj_to_json(proveedor)
+        empleado_ser = EmpleadoSerializer.obj_to_json(empleado)
 
-        proveedor_ser['entidad'] = entidad_ser
+        empleado_ser['entidad'] = entidad_ser
 
-        return Response(proveedor_ser, status=200)
+        return Response(empleado_ser, status=200)
 
 class TurnoViewSet(viewsets.ModelViewSet):
     serializer_class = TurnoSerializer
