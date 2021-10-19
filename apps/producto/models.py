@@ -14,7 +14,7 @@ class Producto(models.Model):
 class Inventario(models.Model):
     producto_id = models.IntegerField()
     sucursal_id = models.IntegerField()
-    puntos = models.IntegerField(null=True)
+    cantidad = models.IntegerField()
 
     class Meta:
         db_table = 'inventarios'
