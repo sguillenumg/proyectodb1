@@ -12,10 +12,10 @@ class ClienteViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         entidad = EntidadSerializer.json_to_obj(request.data['entidad'])
+        entidad.save()
 
         cliente = ClienteSerializer.json_to_obj(request.data)
-
-        entidad.save()
+        cliente.entidad_id = entidad.id
         cliente.save()
 
         entidad_ser = EntidadSerializer.obj_to_json(entidad)
@@ -28,10 +28,10 @@ class ClienteViewSet(viewsets.ModelViewSet):
     def update(self, request, *args, **kwargs):
     
         entidad = EntidadSerializer.json_to_obj(request.data['entidad'])
+        entidad.save()
 
         cliente = ClienteSerializer.json_to_obj(request.data)
-
-        entidad.save()
+        cliente.entidad_id = entidad.id
         cliente.save()
 
         entidad_ser = EntidadSerializer.obj_to_json(entidad)
@@ -50,10 +50,10 @@ class ProveedorViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         entidad = EntidadSerializer.json_to_obj(request.data['entidad'])
+        entidad.save()
 
         proveedor = ProveedorSerializer.json_to_obj(request.data)
-
-        entidad.save()
+        proveedor.entidad_id = entidad.id
         proveedor.save()
 
         entidad_ser = EntidadSerializer.obj_to_json(entidad)
@@ -66,10 +66,10 @@ class ProveedorViewSet(viewsets.ModelViewSet):
     def update(self, request, *args, **kwargs):
 
         entidad = EntidadSerializer.json_to_obj(request.data['entidad'])
+        entidad.save()
 
         proveedor = ProveedorSerializer.json_to_obj(request.data)
-
-        entidad.save()
+        proveedor.entidad_id = entidad.id
         proveedor.save()
 
         entidad_ser = EntidadSerializer.obj_to_json(entidad)

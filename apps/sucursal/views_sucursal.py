@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets
+from rest_framework.response import Response
 from django.db import transaction
 from apps.entidad.serializer import EntidadSerializer
 from apps.sucursal.serializer import SucursalSerializer, EmpleadoSerializer, TurnoSerializer
