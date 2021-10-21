@@ -20,7 +20,7 @@ class EmpleadoViewSet(ViewsetBase):
 
     def create(self, request, *args, **kwargs):
         entidad = EntidadSerializer.json_to_obj(request.data['entidad'])
-        entidad1, None, None
+        entidad.save(1, None, None)
 
         empleado = EmpleadoSerializer.json_to_obj(request.data)
         empleado.entidad_id = entidad.id
