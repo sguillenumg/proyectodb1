@@ -17,16 +17,16 @@ class VentaViewSet(ViewsetBase):
         del(request.data['detalles'])
 
         venta = VentaSerializer.json_to_obj(request.data)
-        venta.save()
+        venta.save(1, None, None)
 
         for det in detalles:
             detalle = DetalleVentaSerializer.json_to_obj(det)
             detalle.venta_id = venta.id
-            detalle.save()
+            detalle.save(1, None, None)
 
             inventario = Inventario.objects.get(sucursal_id=venta.sucursal_id, producto_id=detalle.producto_id)
             inventario.cantidad = inventario.cantidad - detalle.cantidad
-            inventario.save()
+            inventario.save(1, None, None)
 
         return Response(proveedor_ser, status=200)
 
@@ -37,26 +37,26 @@ class VentaViewSet(ViewsetBase):
         del(request.data['detalles'])
 
         venta = VentaSerializer.json_to_obj(request.data)
-        venta.save()
+        venta.save(1, None, None)
 
         det_actuales = list(DetalleVenta.objects.filter(venta_id=venta.id))
         for det in det_actuales:
             inventario = Inventario.objects.get(
                 sucursal_id=venta.sucursal_id, producto_id=det.producto_id)
             inventario.cantidad = inventario.cantidad + det.cantidad
-            inventario.save()
+            inventario.save(1, None, None)
 
             det.delete()
 
         for det in detalles:
             detalle = DetalleVentaSerializer.json_to_obj(det)
             detalle.venta_id = venta.id
-            detalle.save()
+            detalle.save(1, None, None)
 
             inventario = Inventario.objects.get(
                 sucursal_id=venta.sucursal_id, producto_id=detalle.producto_id)
             inventario.cantidad = inventario.cantidad - detalle.cantidad
-            inventario.save()
+            inventario.save(1, None, None)
 
         return Response(proveedor_ser, status=200)
 

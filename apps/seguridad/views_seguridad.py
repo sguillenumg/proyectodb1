@@ -24,6 +24,7 @@ class SeguridadViewSet(ViewsetBase):
             lista_accesos = lista_accesos.append(accesos)
 
         res = {
+            usuario_id: usuario.id,
             usuario: usuario.usuario,
             nombre: usuario.nombre,
             apellido: usuario.apellido,

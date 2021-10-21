@@ -10,7 +10,7 @@ class ViewsetBase(viewsets.ModelViewSet):
     def create(self, request, res_obj=False, *args, **kwargs):
 
         obj = self.get_serializer().json_to_obj(request.data)
-        obj.save(request, None, request.data)
+        obj.save(1, None, request.data)
 
         return Response(self.get_serializer().obj_to_json(obj), 200)
 
@@ -19,7 +19,7 @@ class ViewsetBase(viewsets.ModelViewSet):
         actual = self.get_object()
         obj = self.get_serializer().json_to_obj(request.data)
 
-        obj.save(request, self.get_serializer().obj_to_json(actual), request.data)
+        obj.save(1, self.get_serializer().obj_to_json(actual), request.data)
 
         return Response(self.get_serializer().obj_to_json(obj), 200)
 

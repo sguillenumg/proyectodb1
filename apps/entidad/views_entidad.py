@@ -5,6 +5,12 @@ from django.db import transaction
 from apps.entidad.serializer import EntidadSerializer, ClienteSerializer, ProveedorSerializer
 from apps.entidad.models import Entidad, Cliente, Proveedor
 
+
+class EntidadViewSet(ViewsetBase):
+    serializer_class = EntidadSerializer
+    queryset = Entidad.objects.all()
+    modelo = Entidad
+
 class ClienteViewSet(ViewsetBase):
     serializer_class = ClienteSerializer
     queryset = Cliente.objects.all()
@@ -12,11 +18,11 @@ class ClienteViewSet(ViewsetBase):
 
     def create(self, request, *args, **kwargs):
         entidad = EntidadSerializer.json_to_obj(request.data['entidad'])
-        entidad.save()
+        entidad.save(1, None, None)
 
         cliente = ClienteSerializer.json_to_obj(request.data)
         cliente.entidad_id = entidad.id
-        cliente.save()
+        cliente.save(1, None, None)
 
         entidad_ser = EntidadSerializer.obj_to_json(entidad)
         cliente_ser = ClienteSerializer.obj_to_json(cliente)
@@ -28,11 +34,11 @@ class ClienteViewSet(ViewsetBase):
     def update(self, request, *args, **kwargs):
     
         entidad = EntidadSerializer.json_to_obj(request.data['entidad'])
-        entidad.save()
+        entidad.save(1, None, None)
 
         cliente = ClienteSerializer.json_to_obj(request.data)
         cliente.entidad_id = entidad.id
-        cliente.save()
+        cliente.save(1, None, None)
 
         entidad_ser = EntidadSerializer.obj_to_json(entidad)
         cliente_ser = ClienteSerializer.obj_to_json(cliente)
@@ -50,11 +56,11 @@ class ProveedorViewSet(ViewsetBase):
 
     def create(self, request, *args, **kwargs):
         entidad = EntidadSerializer.json_to_obj(request.data['entidad'])
-        entidad.save()
+        entidad.save(1, None, None)
 
         proveedor = ProveedorSerializer.json_to_obj(request.data)
         proveedor.entidad_id = entidad.id
-        proveedor.save()
+        proveedor.save(1, None, None)
 
         entidad_ser = EntidadSerializer.obj_to_json(entidad)
         proveedor_ser = ProveedorSerializer.obj_to_json(proveedor)
@@ -66,11 +72,11 @@ class ProveedorViewSet(ViewsetBase):
     def update(self, request, *args, **kwargs):
 
         entidad = EntidadSerializer.json_to_obj(request.data['entidad'])
-        entidad.save()
+        entidad.save(1, None, None)
 
         proveedor = ProveedorSerializer.json_to_obj(request.data)
         proveedor.entidad_id = entidad.id
-        proveedor.save()
+        proveedor.save(1, None, None)
 
         entidad_ser = EntidadSerializer.obj_to_json(entidad)
         proveedor_ser = ProveedorSerializer.obj_to_json(proveedor)
