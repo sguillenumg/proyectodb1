@@ -41,7 +41,6 @@ alter table ROL_ACCESO
 /*==============================================================*/
 create table USUARIO (
    USUARIO_ID           number(10)            not null,
-   ROL_ID               number(10),
    NOMBRE               varchar2(25)          not null,
    APELLIDO             varchar2(25)          not null,
    USUARIO              varchar2(15)          not null,
@@ -49,9 +48,43 @@ create table USUARIO (
    constraint PK_USUARIO primary key (USUARIO_ID)
 );
 
-alter table USUARIO
-   add constraint FK_USUARIO_REFERENCE_ROL foreign key (ROL_ID)
+/*==============================================================*/
+/* Table: ROL_USUARIO                                           */
+/*==============================================================*/
+create table ROL_USUARIO (
+   ROL_USUARIO_ID       number(10)            not null,
+   USUARIO_ID           number(10),
+   ROL_ID               number(10),
+   constraint PK_ROL_USUARIO primary key (ROL_USUARIO_ID)
+);
+
+alter table ROL_USUARIO
+   add constraint FK_ROL_USUA_REFERENCE_USUARIO foreign key (USUARIO_ID)
+      references USUARIO (USUARIO_ID);
+
+alter table ROL_USUARIO
+   add constraint FK_ROL_USUA_REFERENCE_ROL foreign key (ROL_ID)
       references ROL (ROL_ID);
+
+/*==============================================================*/
+/* Table: BITACORA                                              */
+/*==============================================================*/
+create table BITACORA (
+   BIT_ID               number(10)            not null,
+   USUARIO_ID           number(10),
+   TIPO_MOVIMIENTO      varchar2(10)          not null,
+   FECHA                TIMESTAMP             not null,
+   TABLA                varchar2(20)          not null,
+   REGISTRO_ID          number(10)            not null,
+   PADRE_ID             number(10),
+   OBJ_OLD              varchar2(2000),
+   OBJ_NEW              varchar2(2000),
+   constraint PK_BITACORA primary key (BIT_ID)
+);
+
+alter table BITACORA
+   add constraint FK_BITACORA_REFERENCE_USUARIO foreign key (USUARIO_ID)
+      references USUARIO (USUARIO_ID);
 
 /*==============================================================*/
 /* Table: ENTIDAD                                               */
