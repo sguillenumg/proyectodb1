@@ -1,6 +1,7 @@
 /*==============================================================*/
 /* Table: ROL                                                   */
 /*==============================================================*/
+CREATE SEQUENCE SEQ_ID_ROL INCREMENT BY 1 START WITH 1;
 create table ROL (
    ROL_ID               number(10)            not null,
    NOMBRE               varchar2(50)          not null,
@@ -11,6 +12,7 @@ create table ROL (
 /*==============================================================*/
 /* Table: OPERACION                                             */
 /*==============================================================*/
+CREATE SEQUENCE SEQ_ID_OPERACION INCREMENT BY 1 START WITH 1;
 create table OPERACION (
    OPERACION_ID         number(10)            not null,
    NOMBRE               varchar2(50)          not null,
@@ -21,6 +23,7 @@ create table OPERACION (
 /*==============================================================*/
 /* Table: ROL_ACCESO                                            */
 /*==============================================================*/
+CREATE SEQUENCE SEQ_ID_ROL_ACCESO INCREMENT BY 1 START WITH 1;
 create table ROL_ACCESO (
    ACCESO_ID            number(10)            not null,
    ROL_ID               number(10),
@@ -39,6 +42,7 @@ alter table ROL_ACCESO
 /*==============================================================*/
 /* Table: USUARIO                                               */
 /*==============================================================*/
+CREATE SEQUENCE SEQ_ID_USUARIO INCREMENT BY 1 START WITH 1;
 create table USUARIO (
    USUARIO_ID           number(10)            not null,
    NOMBRE               varchar2(25)          not null,
@@ -51,6 +55,7 @@ create table USUARIO (
 /*==============================================================*/
 /* Table: ROL_USUARIO                                           */
 /*==============================================================*/
+CREATE SEQUENCE SEQ_ID_ROL_USUARIO INCREMENT BY 1 START WITH 1;
 create table ROL_USUARIO (
    ROL_USUARIO_ID       number(10)            not null,
    USUARIO_ID           number(10),
@@ -69,6 +74,7 @@ alter table ROL_USUARIO
 /*==============================================================*/
 /* Table: BITACORA                                              */
 /*==============================================================*/
+CREATE SEQUENCE SEQ_ID_BITACORA INCREMENT BY 1 START WITH 1;
 create table BITACORA (
    BIT_ID               number(10)            not null,
    USUARIO_ID           number(10),
@@ -89,6 +95,7 @@ alter table BITACORA
 /*==============================================================*/
 /* Table: ENTIDAD                                               */
 /*==============================================================*/
+CREATE SEQUENCE SEQ_ID_ENTIDAD INCREMENT BY 1 START WITH 1;
 create table ENTIDAD (
    ENTIDAD_ID           number(10)            not null,
    NOMBRE               varchar2(50)          not null,
@@ -105,6 +112,7 @@ create table ENTIDAD (
 /*==============================================================*/
 /* Table: EMPLEADO                                              */
 /*==============================================================*/
+CREATE SEQUENCE SEQ_ID_EMPLEADO INCREMENT BY 1 START WITH 1;
 create table EMPLEADO (
    EMPLEADO_ID          number(10)            not null,
    JEFE_ID              number(10),
@@ -130,6 +138,7 @@ alter table EMPLEADO
 /*==============================================================*/
 /* Table: SUCURSAL                                              */
 /*==============================================================*/
+CREATE SEQUENCE SEQ_ID_SUCURSAL INCREMENT BY 1 START WITH 1;
 create table SUCURSAL (
    SUCURSAL_ID          number(10)            not null,
    EMP_ENCARGADO_ID     number(10)            not null,
@@ -145,6 +154,7 @@ alter table SUCURSAL
 /*==============================================================*/
 /* Table: TURNO                                                 */
 /*==============================================================*/
+CREATE SEQUENCE SEQ_ID_TURNO INCREMENT BY 1 START WITH 1;
 create table TURNO (
    TURNO_ID             number(10)            not null,
    SUCURSAL_ID          number(10)            not null,
@@ -165,6 +175,7 @@ alter table TURNO
 /*==============================================================*/
 /* Table: PRODUCTO                                              */
 /*==============================================================*/
+CREATE SEQUENCE SEQ_ID_PRODUCTO INCREMENT BY 1 START WITH 1;
 create table PRODUCTO (
    PRODUCTO_ID          number(10)            not null,
    NOMBRE               varchar2(50)          not null,
@@ -177,6 +188,7 @@ create table PRODUCTO (
 /*==============================================================*/
 /* Table: INVENTARIO                                            */
 /*==============================================================*/
+CREATE SEQUENCE SEQ_ID_INVENTARIO INCREMENT BY 1 START WITH 1;
 create table INVENTARIO (
    INVETARIO_ID         number(10)            not null,
    SUCURSAL_ID          number(10)            not null,
@@ -196,6 +208,7 @@ alter table INVENTARIO
 /*==============================================================*/
 /* Table: CLIENTE                                               */
 /*==============================================================*/
+CREATE SEQUENCE SEQ_ID_CLIENTE INCREMENT BY 1 START WITH 1;
 create table CLIENTE (
    CLIENTE_ID           number(10)            not null,
    ENTIDAD_ID           number(10)            not null,
@@ -210,6 +223,7 @@ alter table CLIENTE
 /*==============================================================*/
 /* Table: ESTADO_VENTA                                          */
 /*==============================================================*/
+CREATE SEQUENCE SEQ_ID_ESTADO_VENTA INCREMENT BY 1 START WITH 1;
 create table ESTADO_VENTA (
    ESTADO_VENTA_ID      number(10)            not null,
    DESCRIPCION          varchar2(15)          not null,
@@ -219,6 +233,7 @@ create table ESTADO_VENTA (
 /*==============================================================*/
 /* Table: METODO_PAGO                                           */
 /*==============================================================*/
+CREATE SEQUENCE SEQ_ID_METODO_PAGO INCREMENT BY 1 START WITH 1;
 create table METODO_PAGO (
    METODO_PAGO_ID       number(10)            not null,
    DESCRIPCION          varchar2(15)          not null,
@@ -228,6 +243,7 @@ create table METODO_PAGO (
 /*==============================================================*/
 /* Table: VENTA                                                 */
 /*==============================================================*/
+CREATE SEQUENCE SEQ_ID_VENTA INCREMENT BY 1 START WITH 1;
 create table VENTA (
    VENTA_ID             number(10)            not null,
    CLIENTE_ID           number(10),
@@ -264,6 +280,7 @@ alter table VENTA
 /*==============================================================*/
 /* Table: DETALLE_VENTA                                         */
 /*==============================================================*/
+CREATE SEQUENCE SEQ_ID_DETALLE_VENTA INCREMENT BY 1 START WITH 1;
 create table DETALLE_VENTA (
    DET_VENTA_ID         number(10)            not null,
    VENTA_ID             number(10),
@@ -285,6 +302,7 @@ alter table DETALLE_VENTA
 /*==============================================================*/
 /* Table: PROVEEDOR                                             */
 /*==============================================================*/
+CREATE SEQUENCE SEQ_ID_PROVEEDOR INCREMENT BY 1 START WITH 1;
 create table PROVEEDOR (
    PROVEEDOR_ID         number(10)            not null,
    ENTIDAD_ID           number(10),
@@ -298,6 +316,7 @@ alter table PROVEEDOR
 /*==============================================================*/
 /* Table: ESTADO_COMPRA                                         */
 /*==============================================================*/
+CREATE SEQUENCE SEQ_ID_ESTADO_COMPRA INCREMENT BY 1 START WITH 1;
 create table ESTADO_COMPRA (
    ESTADO_COMPRA_ID     number(10)            not null,
    DESCRIPCION          varchar2(15)          not null,
@@ -307,6 +326,7 @@ create table ESTADO_COMPRA (
 /*==============================================================*/
 /* Table: COMPRA                                                */
 /*==============================================================*/
+CREATE SEQUENCE SEQ_ID_COMPRA INCREMENT BY 1 START WITH 1;
 create table COMPRA (
    COMPRA_ID            number(10)            not null,
    PROVEEDOR_ID         number(10),
@@ -332,6 +352,7 @@ alter table COMPRA
 /*==============================================================*/
 /* Table: DETALLE_COMPRA                                        */
 /*==============================================================*/
+CREATE SEQUENCE SEQ_ID_DETALLE_COMPRA INCREMENT BY 1 START WITH 1;
 create table DETALLE_COMPRA (
    DET_COMPRA_ID        number(10)            not null,
    COMPRA_ID            number(10),
