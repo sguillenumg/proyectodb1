@@ -1,7 +1,7 @@
-from django.db import models
+from base.modelo_base import ModeloBase
 
 # Create your models here.
-class Venta(models.Model):
+class Venta(ModeloBase):
     cliente_id = models.IntegerField()
     emp_cajero_id = models.IntegerField()
     sucursal_id = models.IntegerField()
@@ -17,7 +17,7 @@ class Venta(models.Model):
         db_table = 'ventas'
         verbose_name = 'ventas'
 
-class DetalleVenta(models.Model):
+class DetalleVenta(ModeloBase):
     venta_id = models.IntegerField()
     producto_id = models.IntegerField()
     cantidad = models.IntegerField()
@@ -29,7 +29,7 @@ class DetalleVenta(models.Model):
         verbose_name = 'venta_detalles'
 
 
-class EstadoVenta(models.Model):
+class EstadoVenta(ModeloBase):
     descripcion = models.CharField(max_length=15)
 
     class Meta:
@@ -37,7 +37,7 @@ class EstadoVenta(models.Model):
         verbose_name = 'venta_estados'
 
 
-class MetodoPago(models.Model):
+class MetodoPago(ModeloBase):
     descripcion = models.CharField(max_length=15)
 
     class Meta:

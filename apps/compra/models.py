@@ -1,7 +1,7 @@
-from django.db import models
+from base.modelo_base import ModeloBase
 
 # Create your models here.
-class Compra(models.Model):
+class Compra(ModeloBase):
     proveedor_id = models.IntegerField()
     sucursal_id = models.IntegerField()
     estado_compra_id = models.IntegerField()
@@ -14,7 +14,7 @@ class Compra(models.Model):
         db_table = 'compras'
         verbose_name = 'compras'
 
-class DetalleCompra(models.Model):
+class DetalleCompra(ModeloBase):
     compra_id = models.IntegerField()
     producto_id = models.IntegerField()
     cantidad = models.IntegerField()
@@ -26,7 +26,7 @@ class DetalleCompra(models.Model):
         verbose_name = 'compra_detalles'
 
 
-class EstadoCompra(models.Model):
+class EstadoCompra(ModeloBase):
     descripcion = models.CharField(max_length=15)
 
     class Meta:

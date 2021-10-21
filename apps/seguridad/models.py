@@ -1,7 +1,7 @@
-from django.db import models
+from base.modelo_base import ModeloBase
 
 
-class Usuario(models.Model):
+class Usuario(ModeloBase):
     nombre = models.CharField(max_length=25)
     apellido = models.CharField(max_length=25)
     usuario = models.CharField(max_length=15)
@@ -13,7 +13,7 @@ class Usuario(models.Model):
         db_table = 'usuarios'
 
 
-class Rol(models.Model):
+class Rol(ModeloBase):
     nombre = models.CharField(max_length=25)
 
     class Meta:
@@ -21,7 +21,7 @@ class Rol(models.Model):
         ordering = ['id']
 
 
-class Operacion(models.Model):
+class Operacion(ModeloBase):
     nombre = models.CharField(max_length=25)
 
     class Meta:
@@ -29,7 +29,7 @@ class Operacion(models.Model):
         ordering = ['id']
 
 
-class Acceso(models.Model):
+class Acceso(ModeloBase):
     rol_id = models.IntegerField()
     operacion_id = models.IntegerField()
 

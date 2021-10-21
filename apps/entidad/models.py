@@ -1,7 +1,7 @@
-from django.db import models
+from base.modelo_base import ModeloBase
 
 # Create your models here.
-class Entidad(models.Model):
+class Entidad(ModeloBase):
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
     dpi = models.CharField(max_length=15, null=True)
@@ -15,7 +15,7 @@ class Entidad(models.Model):
         db_table = 'entidades'
         verbose_name = 'entidades'
 
-class Cliente(models.Model):
+class Cliente(ModeloBase):
     entidad_id = models.IntegerField()
     puntos = models.IntegerField(null=True)
 
@@ -23,7 +23,7 @@ class Cliente(models.Model):
         db_table = 'clientes'
         verbose_name = 'clientes'
 
-class Proveedor(models.Model):
+class Proveedor(ModeloBase):
     entidad_id = models.IntegerField()
 
     class Meta:

@@ -1,7 +1,7 @@
-from django.db import models
+from base.modelo_base import ModeloBase
 
 # Create your models here.
-class Sucursal(models.Model):
+class Sucursal(ModeloBase):
     telefono = models.CharField(max_length=8, null=True)
     direccion = models.CharField(max_length=200, null=True)
 
@@ -9,7 +9,7 @@ class Sucursal(models.Model):
         db_table = 'sucursales'
         verbose_name = 'sucursales'
 
-class Empleado(models.Model):
+class Empleado(ModeloBase):
     entidad_id = models.IntegerField()
     fecha_ingreso = models.DateField()
     flg_activo = models.IntegerField()
@@ -18,7 +18,7 @@ class Empleado(models.Model):
         db_table = 'empleados'
         verbose_name = 'empleados'
 
-class Turno(models.Model):
+class Turno(ModeloBase):
     sucursal_id = models.IntegerField()
     empleado_id = models.IntegerField()
     fecha_inicio = models.DateTimeField()

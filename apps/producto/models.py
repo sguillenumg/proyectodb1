@@ -1,7 +1,7 @@
-from django.db import models
+from base.modelo_base import ModeloBase
 
 # Create your models here.
-class Producto(models.Model):
+class Producto(ModeloBase):
     nombre = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=500)
     costo = models.DecimalField(max_digits=8, decimal_places=2)
@@ -11,7 +11,7 @@ class Producto(models.Model):
         db_table = 'productos'
         verbose_name = 'productos'
 
-class Inventario(models.Model):
+class Inventario(ModeloBase):
     producto_id = models.IntegerField()
     sucursal_id = models.IntegerField()
     cantidad = models.IntegerField()
