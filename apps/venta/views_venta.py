@@ -24,7 +24,7 @@ class VentaViewSet(ViewsetBase):
             detalle.venta_id = venta.id
             detalle.save(1, None, None)
 
-            try
+            try:
                 inventario = Inventario.objects.get(sucursal_id=venta.sucursal_id, producto_id=detalle.producto_id)
                 inventario.cantidad = inventario.cantidad - detalle.cantidad
 

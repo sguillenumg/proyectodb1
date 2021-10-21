@@ -24,7 +24,7 @@ class CompraViewSet(ViewsetBase):
             detalle.compra_id = compra.id
             detalle.save(1, None, None)
 
-            try
+            try:
                 inventario = Inventario.objects.get(sucursal_id=compra.sucursal_id, producto_id=detalle.producto_id)
                 inventario.cantidad = inventario.cantidad + detalle.cantidad
                 inventario.save(1, None, None)
@@ -61,7 +61,7 @@ class CompraViewSet(ViewsetBase):
             detalle.compra_id = compra.id
             detalle.save(1, None, None)
 
-            try
+            try:
                 inventario = Inventario.objects.get(sucursal_id=compra.sucursal_id, producto_id=detalle.producto_id)
                 inventario.cantidad = inventario.cantidad + detalle.cantidad
                 inventario.save(1, None, None)
