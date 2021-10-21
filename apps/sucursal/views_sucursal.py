@@ -1,18 +1,18 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from base.viewset_base import ViewsetBase
 from rest_framework.response import Response
 from django.db import transaction
 from apps.entidad.serializer import EntidadSerializer
 from apps.sucursal.serializer import SucursalSerializer, EmpleadoSerializer, TurnoSerializer
 from apps.sucursal.models import Sucursal, Empleado, Turno
 
-class SucursalViewSet(viewsets.ModelViewSet):
+class SucursalViewSet(ViewsetBase):
     serializer_class = SucursalSerializer
     queryset = Sucursal.objects.all()
     modelo = Sucursal
 
 
-class EmpleadoViewSet(viewsets.ModelViewSet):
+class EmpleadoViewSet(ViewsetBase):
     serializer_class = EmpleadoSerializer
     queryset = Empleado.objects.all()
     modelo = Empleado
@@ -49,7 +49,7 @@ class EmpleadoViewSet(viewsets.ModelViewSet):
 
         return Response(empleado_ser, status=200)
 
-class TurnoViewSet(viewsets.ModelViewSet):
+class TurnoViewSet(ViewsetBase):
     serializer_class = TurnoSerializer
     queryset = Turno.objects.all()
     modelo = Turno

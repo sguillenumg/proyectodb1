@@ -1,11 +1,11 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from base.viewset_base import ViewsetBase
 from rest_framework.response import Response
 from django.db import transaction
 from django.contrib.auth.models import User
 from .models import Usuario, Acceso
 
-class SeguridadViewSet(viewsets.ModelViewSet):
+class SeguridadViewSet(ViewsetBase):
     serializer_class = VentaSerializer
     queryset = Venta.objects.all()
     modelo = Venta

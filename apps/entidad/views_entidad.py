@@ -1,11 +1,11 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from base.viewset_base import ViewsetBase
 from rest_framework.response import Response
 from django.db import transaction
 from apps.entidad.serializer import EntidadSerializer, ClienteSerializer, ProveedorSerializer
 from apps.entidad.models import Entidad, Cliente, Proveedor
 
-class ClienteViewSet(viewsets.ModelViewSet):
+class ClienteViewSet(ViewsetBase):
     serializer_class = ClienteSerializer
     queryset = Cliente.objects.all()
     modelo = Cliente
@@ -43,7 +43,7 @@ class ClienteViewSet(viewsets.ModelViewSet):
 
 
 
-class ProveedorViewSet(viewsets.ModelViewSet):
+class ProveedorViewSet(ViewsetBase):
     serializer_class = ProveedorSerializer
     queryset = Proveedor.objects.all()
     modelo = Proveedor

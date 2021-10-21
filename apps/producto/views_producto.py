@@ -1,16 +1,16 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from base.viewset_base import ViewsetBase
 from django.db import transaction
 from apps.producto.serializer import ProductoSerializer, InventarioSerializer
 from apps.producto.models import Producto, Inventario
 
-class ProductoViewSet(viewsets.ModelViewSet):
+class ProductoViewSet(ViewsetBase):
     serializer_class = ProductoSerializer
     queryset = Producto.objects.all()
     modelo = Producto
 
 
-class InventarioViewSet(viewsets.ModelViewSet):
+class InventarioViewSet(ViewsetBase):
     serializer_class = InventarioSerializer
     queryset = Inventario.objects.all()
     modelo = Inventario

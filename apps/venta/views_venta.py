@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from base.viewset_base import ViewsetBase
 from rest_framework.response import Response
 from django.db import transaction
 from apps.venta.serializer import VentaSerializer, DetalleVentaSerializer, EstadoVentaSerializer, MetodoPagoSerializer
 from apps.venta.models import Venta, DetalleVenta, EstadoVenta, MetodoPago
 from apps.producto.models import Inventario
 
-class VentaViewSet(viewsets.ModelViewSet):
+class VentaViewSet(ViewsetBase):
     serializer_class = VentaSerializer
     queryset = Venta.objects.all()
     modelo = Venta
@@ -61,19 +61,19 @@ class VentaViewSet(viewsets.ModelViewSet):
         return Response(proveedor_ser, status=200)
 
 
-class DetalleVentaViewSet(viewsets.ModelViewSet):
+class DetalleVentaViewSet(ViewsetBase):
     serializer_class = DetalleVentaSerializer
     queryset = DetalleVenta.objects.all()
     modelo = DetalleVenta
 
 
-class EstadoVentaViewSet(viewsets.ModelViewSet):
+class EstadoVentaViewSet(ViewsetBase):
     serializer_class = EstadoVentaSerializer
     queryset = EstadoVenta.objects.all()
     modelo = EstadoVenta
 
 
-class MetodoPagoViewSet(viewsets.ModelViewSet):
+class MetodoPagoViewSet(ViewsetBase):
     serializer_class = MetodoPagoSerializer
     queryset = MetodoPago.objects.all()
     modelo = MetodoPago
