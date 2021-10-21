@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'apps.venta',
     'apps.compra',
     'apps.seguridad',
+    'apps.bitacora',
 ]
 
 MIDDLEWARE = [
