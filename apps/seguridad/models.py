@@ -1,4 +1,4 @@
-from base.modelo_base import ModeloBase
+from base.modelo_base import ModeloBase, models
 
 
 class Usuario(ModeloBase):
@@ -7,7 +7,6 @@ class Usuario(ModeloBase):
     usuario = models.CharField(max_length=15)
     password = models.TextField()
     flg_activo = models.BooleanField()
-    rol_id = models.IntegerField()
 
     class Meta:
         db_table = 'usuarios'
@@ -18,7 +17,6 @@ class Rol(ModeloBase):
 
     class Meta:
         db_table = 'roles'
-        ordering = ['id']
 
 
 class Operacion(ModeloBase):
@@ -26,7 +24,6 @@ class Operacion(ModeloBase):
 
     class Meta:
         db_table = 'operaciones'
-        ordering = ['id']
 
 
 class Acceso(ModeloBase):
@@ -35,4 +32,11 @@ class Acceso(ModeloBase):
 
     class Meta:
         db_table = 'rol_accesos'
-        ordering = ['id']
+
+
+class RolUsuario(ModeloBase):
+    rol_id = models.IntegerField()
+    usuario_id = models.IntegerField()
+
+    class Meta:
+        db_table = 'rol_usuarios'

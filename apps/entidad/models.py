@@ -1,4 +1,4 @@
-from base.modelo_base import ModeloBase
+from base.modelo_base import ModeloBase, models
 
 # Create your models here.
 class Entidad(ModeloBase):

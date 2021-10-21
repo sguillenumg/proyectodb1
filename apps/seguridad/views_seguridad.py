@@ -3,7 +3,7 @@ from base.viewset_base import ViewsetBase
 from rest_framework.response import Response
 from django.db import transaction
 from django.contrib.auth.models import User
-from .models import Usuario, Acceso
+from .models import Usuario, Acceso, RolUsuario
 
 class SeguridadViewSet(ViewsetBase):
     serializer_class = VentaSerializer
@@ -17,13 +17,17 @@ class SeguridadViewSet(ViewsetBase):
             return Response("Usuario y contraseña no coinciden", status=400)
 
         usuario = Usuario.objects.get(pk=user.id)
-        accesos = Acceso.objects.filter(rol_id=usuario.rol_id).values()
+        roles = RolUsuario.objects.filter(usuario_id=usuario.id)
+        lista_accesos = []
+        for rol in roles:
+            accesos = Acceso.objects.filter(rol_id=rol.id).values()
+            lista_accesos = lista_accesos.append(accesos)
 
         res = {
             usuario: usuario.usuario,
             nombre: usuario.nombre,
             apellido: usuario.apellido,
-            accesos: accesos
+            accesos: lista_accesos
         }
 
         return Response(res, status=200)
