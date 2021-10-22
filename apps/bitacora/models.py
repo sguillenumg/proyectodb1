@@ -7,8 +7,8 @@ class Bitacora(models.Model):
     tabla = models.CharField(max_length=20)
     registro_id = models.IntegerField()
     padre_id = models.IntegerField(null=True)
-    obj_old = models.CharField(max_length=2000)
-    obj_new = models.CharField(max_length=2000)
+    obj_old = models.CharField(max_length=2000, null=True)
+    obj_new = models.CharField(max_length=2000, null=True)
 
     class Meta:
         db_table = 'bitacora'
