@@ -37,7 +37,7 @@ class CompraViewSet(ViewsetBase):
                 inventario.cantidad = detalle.cantidad
                 inventario.save(1,None,None)
 
-        return Response(proveedor_ser, status=200)
+        return Response(compra.id, status=200)
 
     def update(self, request, *args, **kwargs):
 
@@ -74,7 +74,7 @@ class CompraViewSet(ViewsetBase):
                 inventario.cantidad = detalle.cantidad
                 inventario.save(1,None,None)
 
-        return Response(proveedor_ser, status=200)
+        return Response(compra.id, status=200)
 
 class DetalleCompraViewSet(ViewsetBase):
     serializer_class = DetalleCompraSerializer

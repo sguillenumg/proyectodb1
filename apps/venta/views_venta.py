@@ -35,7 +35,7 @@ class VentaViewSet(ViewsetBase):
             except Inventario.DoesNotExist:
                 return Response("Cantidad insuficiente del producto: {}".format(detalle.producto_id), status=400)
 
-        return Response(proveedor_ser, status=200)
+        return Response(venta.id, status=200)
 
     def update(self, request, *args, **kwargs):
 
@@ -65,7 +65,7 @@ class VentaViewSet(ViewsetBase):
             inventario.cantidad = inventario.cantidad - detalle.cantidad
             inventario.save(1, None, None)
 
-        return Response(proveedor_ser, status=200)
+        return Response(venta.id, status=200)
 
 
 class DetalleVentaViewSet(ViewsetBase):
