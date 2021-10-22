@@ -28,7 +28,7 @@ class VentaViewSet(ViewsetBase):
                 inventario = Inventario.objects.get(sucursal_id=venta.sucursal_id, producto_id=detalle.producto_id)
                 inventario.cantidad = inventario.cantidad - detalle.cantidad
 
-                if cantidad < 0:
+                if inventario.cantidad < 0:
                     return Response("Cantidad insuficiente del producto: {}".format(detalle.producto_id), status=400)
 
                 inventario.save(1, None, None)
