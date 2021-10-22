@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from django.db import transaction
 from django.contrib.auth.models import User
 from .models import Usuario, Acceso, RolUsuario
+from apps.venta.serializer import Venta, VentaSerializer
 
 class SeguridadViewSet(ViewsetBase):
     serializer_class = VentaSerializer

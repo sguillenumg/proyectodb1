@@ -5,6 +5,7 @@ from django.db import transaction
 from apps.venta.serializer import VentaSerializer
 from apps.venta.models import Venta
 from apps.sucursal.models import Sucursal
+from rest_framework.decorators import action
 
 class ReporteViewSet(ViewsetBase):
     serializer_class = VentaSerializer
@@ -141,3 +142,4 @@ class ReporteViewSet(ViewsetBase):
         return [
             dict(zip(columns, row))
             for row in cursor.fetchall()
+        ]
