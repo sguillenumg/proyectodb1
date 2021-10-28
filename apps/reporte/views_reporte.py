@@ -6,6 +6,7 @@ from apps.venta.serializer import VentaSerializer
 from apps.venta.models import Venta
 from apps.sucursal.models import Sucursal
 from rest_framework.decorators import action
+from django.db import connection
 
 class ReporteViewSet(ViewsetBase):
     serializer_class = VentaSerializer
