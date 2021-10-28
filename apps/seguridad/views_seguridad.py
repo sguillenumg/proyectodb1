@@ -23,8 +23,9 @@ class SeguridadViewSet(ViewsetBase):
         try:
             roles = RolUsuario.objects.filter(usuario_id=usuario.id)
             for rol in roles:
-                accesos = Acceso.objects.filter(rol_id=rol.id).values()
-                lista_accesos = lista_accesos.append(accesos)
+                accesos = list(Acceso.objects.filter(rol_id=rol.id).values())
+                for acc in accesos:
+                    lista_accesos.append(acc)
         except:
             pass
 
