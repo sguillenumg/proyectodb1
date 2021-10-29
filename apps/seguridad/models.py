@@ -9,21 +9,21 @@ class Usuario(ModeloBase):
     flg_activo = models.BooleanField()
 
     class Meta:
-        db_table = 'usuarios'
+        db_table = 'usuario'
 
 
 class Rol(ModeloBase):
     nombre = models.CharField(max_length=25)
 
     class Meta:
-        db_table = 'roles'
+        db_table = 'rol'
 
 
 class Operacion(ModeloBase):
     nombre = models.CharField(max_length=25)
 
     class Meta:
-        db_table = 'operaciones'
+        db_table = 'operacion'
 
 
 class Acceso(ModeloBase):
@@ -31,7 +31,7 @@ class Acceso(ModeloBase):
     operacion_id = models.IntegerField()
 
     class Meta:
-        db_table = 'rol_accesos'
+        db_table = 'rol_acceso'
 
 
 class RolUsuario(ModeloBase):
@@ -39,4 +39,4 @@ class RolUsuario(ModeloBase):
     usuario_id = models.IntegerField()
 
     class Meta:
-        db_table = 'rol_usuarios'
+        db_table = 'rol_usuario'

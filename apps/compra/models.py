@@ -12,8 +12,8 @@ class Compra(ModeloBase):
     descuento = models.DecimalField(max_digits=8, decimal_places=2)
 
     class Meta:
-        db_table = 'compras'
-        verbose_name = 'compras'
+        db_table = 'compra'
+        verbose_name = 'compra'
 
 class DetalleCompra(ModeloBase):
     compra_id = models.IntegerField()
@@ -23,14 +23,14 @@ class DetalleCompra(ModeloBase):
     precio = models.DecimalField(max_digits=8, decimal_places=2)
 
     class Meta:
-        db_table = 'compra_detalles'
-        verbose_name = 'compra_detalles'
+        db_table = 'detalle_compra'
+        verbose_name = 'detalle_compra'
 
 
 class EstadoCompra(ModeloBase):
     descripcion = models.CharField(max_length=15)
 
     class Meta:
-        db_table = 'compra_estados'
-        verbose_name = 'compra_estados'
+        db_table = 'estado_compra'
+        verbose_name = 'estado_compra'
 

@@ -8,8 +8,8 @@ class Producto(ModeloBase):
     precio = models.DecimalField(max_digits=8, decimal_places=2)
 
     class Meta:
-        db_table = 'productos'
-        verbose_name = 'productos'
+        db_table = 'producto'
+        verbose_name = 'producto'
 
 class Inventario(ModeloBase):
     producto_id = models.IntegerField()
@@ -17,6 +17,6 @@ class Inventario(ModeloBase):
     cantidad = models.IntegerField()
 
     class Meta:
-        db_table = 'inventarios'
-        verbose_name = 'inventarios'
+        db_table = 'inventario'
+        verbose_name = 'inventario'
 

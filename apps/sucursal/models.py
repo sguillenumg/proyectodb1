@@ -6,8 +6,8 @@ class Sucursal(ModeloBase):
     direccion = models.CharField(max_length=200, null=True)
 
     class Meta:
-        db_table = 'sucursales'
-        verbose_name = 'sucursales'
+        db_table = 'sucursal'
+        verbose_name = 'sucursal'
 
 class Empleado(ModeloBase):
     entidad_id = models.IntegerField()
@@ -15,8 +15,8 @@ class Empleado(ModeloBase):
     flg_activo = models.IntegerField()
 
     class Meta:
-        db_table = 'empleados'
-        verbose_name = 'empleados'
+        db_table = 'empleado'
+        verbose_name = 'empleado'
 
 class Turno(ModeloBase):
     sucursal_id = models.IntegerField()
@@ -25,5 +25,5 @@ class Turno(ModeloBase):
     fecha_fin = models.DateTimeField()
 
     class Meta:
-        db_table = 'turnos'
-        verbose_name = 'turnos'
+        db_table = 'turno'
+        verbose_name = 'turno'

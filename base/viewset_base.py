@@ -10,7 +10,7 @@ class ViewsetBase(viewsets.ModelViewSet):
     def create(self, request, res_obj=False, *args, **kwargs):
 
         obj = self.get_serializer().json_to_obj(request.data)
-        obj.save(request.META['usuario_id'] if 'usuario_id' in request.META else -1, None, request.data)
+        obj.save(request.query_params['usuario_id'] if 'usuario_id' in request.query_params else -1, None, request.data)
 
         return Response(self.get_serializer().obj_to_json(obj), 200)
 
@@ -19,13 +19,13 @@ class ViewsetBase(viewsets.ModelViewSet):
         actual = self.get_object()
         obj = self.get_serializer().json_to_obj(request.data)
 
-        obj.save(request.META['usuario_id'] if 'usuario_id' in request.META else -1, self.get_serializer().obj_to_json(actual), request.data)
+        obj.save(request.query_params['usuario_id'] if 'usuario_id' in request.query_params else -1, self.get_serializer().obj_to_json(actual), request.data)
 
         return Response(self.get_serializer().obj_to_json(obj), 200)
 
     @transaction.atomic
     def destroy(self, request, *args, **kwargs):
         obj = self.get_object()
-        obj.delete(request.META['usuario_id'] if 'usuario_id' in request.META else -1, self.get_serializer().obj_to_json(obj))
+        obj.delete(request.query_params['usuario_id'] if 'usuario_id' in request.query_params else -1, self.get_serializer().obj_to_json(obj))
 
         return Response(True, 200)

@@ -5,6 +5,7 @@ from django.db import transaction
 from apps.venta.serializer import VentaSerializer, DetalleVentaSerializer, EstadoVentaSerializer, MetodoPagoSerializer
 from apps.venta.models import Venta, DetalleVenta, EstadoVenta, MetodoPago
 from apps.producto.models import Inventario
+from apps.producto.serializer import InventarioSerializer
 
 class VentaViewSet(ViewsetBase):
     serializer_class = VentaSerializer
@@ -17,21 +18,26 @@ class VentaViewSet(ViewsetBase):
         del(request.data['detalles'])
 
         venta = VentaSerializer.json_to_obj(request.data)
-        venta.save(1, None, None)
+        venta.save(
+            request.query_params['usuario_id'] if 'usuario_id' in request.query_params else -1, None, request.data)
 
         for det in detalles:
             detalle = DetalleVentaSerializer.json_to_obj(det)
             detalle.venta_id = venta.id
-            detalle.save(1, None, None)
+            detalle.save(
+                request.query_params['usuario_id'] if 'usuario_id' in request.query_params else -1, None, det, venta.id)
 
             try:
                 inventario = Inventario.objects.get(sucursal_id=venta.sucursal_id, producto_id=detalle.producto_id)
+                inv_old_new = InventarioSerializer.obj_to_json(inventario)
                 inventario.cantidad = inventario.cantidad - detalle.cantidad
+                inv_new = InventarioSerializer.obj_to_json(inventario)
 
                 if inventario.cantidad < 0:
                     return Response("Cantidad insuficiente del producto: {}".format(detalle.producto_id), status=400)
 
-                inventario.save(1, None, None)
+                inventario.save(
+                    request.query_params['usuario_id'] if 'usuario_id' in request.query_params else -1, inv_old_new, inv_new)
             except Inventario.DoesNotExist:
                 return Response("Cantidad insuficiente del producto: {}".format(detalle.producto_id), status=400)
 
@@ -44,26 +50,35 @@ class VentaViewSet(ViewsetBase):
         del(request.data['detalles'])
 
         venta = VentaSerializer.json_to_obj(request.data)
-        venta.save(1, None, None)
+        venta.save(
+            request.query_params['usuario_id'] if 'usuario_id' in request.query_params else -1, request.data, request.data)
 
         det_actuales = list(DetalleVenta.objects.filter(venta_id=venta.id))
         for det in det_actuales:
             inventario = Inventario.objects.get(
                 sucursal_id=venta.sucursal_id, producto_id=det.producto_id)
+            inv_old = InventarioSerializer.obj_to_json(inventario)
             inventario.cantidad = inventario.cantidad + det.cantidad
-            inventario.save(1, None, None)
+            inv_new = InventarioSerializer.obj_to_json(inventario)
+            inventario.save(
+                request.query_params['usuario_id'] if 'usuario_id' in request.query_params else -1, inv_old, inv_new)
 
-            det.delete()
+            det.delete(
+                request.query_params['usuario_id'] if 'usuario_id' in request.query_params else -1, det, venta.id)
 
         for det in detalles:
             detalle = DetalleVentaSerializer.json_to_obj(det)
             detalle.venta_id = venta.id
-            detalle.save(1, None, None)
+            detalle.save(
+                request.query_params['usuario_id'] if 'usuario_id' in request.query_params else -1, None, det)
 
             inventario = Inventario.objects.get(
                 sucursal_id=venta.sucursal_id, producto_id=detalle.producto_id)
+            inv_old = InventarioSerializer.obj_to_json(inventario)
             inventario.cantidad = inventario.cantidad - detalle.cantidad
-            inventario.save(1, None, None)
+            inv_new = InventarioSerializer.obj_to_json(inventario)
+            inventario.save(
+                request.query_params['usuario_id'] if 'usuario_id' in request.query_params else -1, inv_old, inv_new)
 
         return Response(venta.id, status=200)
 

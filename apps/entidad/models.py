@@ -12,20 +12,20 @@ class Entidad(ModeloBase):
     correo = models.CharField(max_length=25, null=True)
 
     class Meta:
-        db_table = 'entidades'
-        verbose_name = 'entidades'
+        db_table = 'entidad'
+        verbose_name = 'entidad'
 
 class Cliente(ModeloBase):
     entidad_id = models.IntegerField()
     puntos = models.IntegerField(null=True)
 
     class Meta:
-        db_table = 'clientes'
-        verbose_name = 'clientes'
+        db_table = 'cliente'
+        verbose_name = 'cliente'
 
 class Proveedor(ModeloBase):
     entidad_id = models.IntegerField()
 
     class Meta:
-        db_table = 'proveedores'
-        verbose_name = 'proveedores'
+        db_table = 'proveedor'
+        verbose_name = 'proveedor'

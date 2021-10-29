@@ -20,11 +20,13 @@ class EmpleadoViewSet(ViewsetBase):
 
     def create(self, request, *args, **kwargs):
         entidad = EntidadSerializer.json_to_obj(request.data['entidad'])
-        entidad.save(1, None, None)
+        entidad.save(
+            request.query_params['usuario_id'] if 'usuario_id' in request.query_params else -1, None, request.data)
 
         empleado = EmpleadoSerializer.json_to_obj(request.data)
         empleado.entidad_id = entidad.id
-        empleado.save(1, None, None)
+        empleado.save(
+            request.query_params['usuario_id'] if 'usuario_id' in request.query_params else -1, None, request.data)
 
         entidad_ser = EntidadSerializer.obj_to_json(entidad)
         empleado_ser = EmpleadoSerializer.obj_to_json(empleado)
@@ -36,11 +38,13 @@ class EmpleadoViewSet(ViewsetBase):
     def update(self, request, *args, **kwargs):
 
         entidad = EntidadSerializer.json_to_obj(request.data['entidad'])
-        entidad.save(1, None, None)
+        entidad.save(
+            request.query_params['usuario_id'] if 'usuario_id' in request.query_params else -1, request.data, request.data)
 
         empleado = EmpleadoSerializer.json_to_obj(request.data)
         empleado.entidad_id = entidad.id
-        empleado.save(1, None, None)
+        empleado.save(
+            request.query_params['usuario_id'] if 'usuario_id' in request.query_params else -1, request.data, request.data)
 
         entidad_ser = EntidadSerializer.obj_to_json(entidad)
         empleado_ser = EmpleadoSerializer.obj_to_json(empleado)

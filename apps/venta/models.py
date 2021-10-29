@@ -14,8 +14,8 @@ class Venta(ModeloBase):
     descuento = models.DecimalField(max_digits=8, decimal_places=2)
 
     class Meta:
-        db_table = 'ventas'
-        verbose_name = 'ventas'
+        db_table = 'venta'
+        verbose_name = 'venta'
 
 class DetalleVenta(ModeloBase):
     venta_id = models.IntegerField()
@@ -25,21 +25,21 @@ class DetalleVenta(ModeloBase):
     precio = models.DecimalField(max_digits=8, decimal_places=2)
 
     class Meta:
-        db_table = 'venta_detalles'
-        verbose_name = 'venta_detalles'
+        db_table = 'detalle_venta'
+        verbose_name = 'detalle_venta'
 
 
 class EstadoVenta(ModeloBase):
     descripcion = models.CharField(max_length=15)
 
     class Meta:
-        db_table = 'venta_estados'
-        verbose_name = 'venta_estados'
+        db_table = 'estado_venta'
+        verbose_name = 'estado_venta'
 
 
 class MetodoPago(ModeloBase):
     descripcion = models.CharField(max_length=15)
 
     class Meta:
-        db_table = 'metodos_pago'
-        verbose_name = 'metodos_pago'
+        db_table = 'metodo_pago'
+        verbose_name = 'metodo_pago'

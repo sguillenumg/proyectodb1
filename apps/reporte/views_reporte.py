@@ -26,16 +26,17 @@ class ReporteViewSet(ViewsetBase):
                         SUC.DIRECCION,
                         PROD.NOMBRE,
                         SUM(DET.CANTIDAD) TOTAL
-                    FROM VENTAS VEN
-                    JOIN VENTA_DETALLES DET ON DET.VENTA_ID = VEN.ID
-                    JOIN PRODUCTOS PROD ON PROD.ID = DET.PRODUCTO_ID
-                    JOIN SUCURSALES SUC ON SUC.ID = VEN.SUCURSAL_ID
+                    FROM VENTA VEN
+                    JOIN DETALLE_VENTA DET ON DET.VENTA_ID = VEN.ID
+                    JOIN PRODUCTO PROD ON PROD.ID = DET.PRODUCTO_ID
+                    JOIN SUCURSAL SUC ON SUC.ID = VEN.SUCURSAL_ID
                     WHERE SUC.ID = {}
                     GROUP BY
                         SUC.ID,
                         SUC.DIRECCION,
                         PROD.NOMBRE
                     ORDER BY
+                        1,
                         4 DESC
                 ) MOV
             ) A
@@ -68,10 +69,10 @@ class ReporteViewSet(ViewsetBase):
                         ENT.NOMBRE,
                         ENT.APELLIDO,
                         SUM(VEN.TOTAL) TOTAL
-                    FROM VENTAS VEN
-                    JOIN CLIENTES CLI ON CLI.ID = VEN.CLIENTE_ID
-                    JOIN ENTIDADES ENT ON ENT.ID = CLI.ENTIDAD_ID
-                    JOIN SUCURSALES SUC ON SUC.ID = VEN.SUCURSAL_ID
+                    FROM VENTA VEN
+                    JOIN CLIENTE CLI ON CLI.ID = VEN.CLIENTE_ID
+                    JOIN ENTIDAD ENT ON ENT.ID = CLI.ENTIDAD_ID
+                    JOIN SUCURSAL SUC ON SUC.ID = VEN.SUCURSAL_ID
                     WHERE SUC.ID = {}
                     GROUP BY
                         SUC.ID,
@@ -80,6 +81,7 @@ class ReporteViewSet(ViewsetBase):
                         ENT.NOMBRE,
                         ENT.APELLIDO
                     ORDER BY
+                        1,
                         6 DESC
                 ) MOV
                 ) A
@@ -110,16 +112,17 @@ class ReporteViewSet(ViewsetBase):
                         SUC.DIRECCION,
                         PROD.NOMBRE,
                         SUM(DET.CANTIDAD) TOTAL
-                    FROM VENTAS VEN
-                    JOIN VENTA_DETALLES DET ON DET.VENTA_ID = VEN.ID
-                    JOIN PRODUCTOS PROD ON PROD.ID = DET.PRODUCTO_ID
-                    JOIN SUCURSALES SUC ON SUC.ID = VEN.SUCURSAL_ID
+                    FROM VENTA VEN
+                    JOIN DETALLE_VENTA DET ON DET.VENTA_ID = VEN.ID
+                    JOIN PRODUCTO PROD ON PROD.ID = DET.PRODUCTO_ID
+                    JOIN SUCURSAL SUC ON SUC.ID = VEN.SUCURSAL_ID
                     WHERE SUC.ID = {}
                     GROUP BY
                         SUC.ID,
                         SUC.DIRECCION,
                         PROD.NOMBRE
                     ORDER BY
+                        1,
                         4 ASC
                 ) MOV
             ) A
